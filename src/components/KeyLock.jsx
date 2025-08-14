@@ -11,7 +11,7 @@ function KeyLock({
     lockImageSrc,
     lockAltText,
     onMouseDown,
-    onReset 
+    onTouchStart,
 }) {
     return (
         <div className={styles.keyLockContainer}>
@@ -41,6 +41,7 @@ function KeyLock({
                             : 'translate(0, 0)'
                     }}
                     onMouseDown={onMouseDown}
+                    onTouchStart={onTouchStart}
                 >
                     <img 
                         src={keyImageSrc}

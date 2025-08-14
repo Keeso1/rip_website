@@ -40,58 +40,24 @@ function KeyLockContainer({ onUnlock }) {
         };
     }, [isUnlocked, onUnlock]);
 
+    // Mouse events
     const handleMouseDown = (e) => {
-        if (isUnlocked) return; // Prevent dragging if already unlocked
-        
+        if (isUnlocked) return;
         setIsDragging(true);
         const rect = keyRef.current.getBoundingClientRect();
         const offsetX = e.clientX - rect.left - rect.width / 2;
         const offsetY = e.clientY - rect.top - rect.height / 2;
-        
+
         const handleMouseMove = (e) => {
             const newX = e.clientX - offsetX;
             const newY = e.clientY - offsetY;
             setKeyPosition({ x: newX, y: newY });
-            
-            // Check if key is near the lock
-            if (lockRef.current) {
-                const lockRect = lockRef.current.getBoundingClientRect();
-                
-                // Calculate key center position based on mouse position
-                const keyCenterX = e.clientX;
-                const keyCenterY = e.clientY;
-                
-                // Calculate lock center position
-                const lockCenterX = lockRect.left + lockRect.width / 2;
-                const lockCenterY = lockRect.top + lockRect.height / 2;
-                
-                const distance = Math.sqrt(
-                    Math.pow(keyCenterX - lockCenterX, 2) +
-                    Math.pow(keyCenterY - lockCenterY, 2)
-                );
-                
-                console.log("Distance:", distance);
-                console.log("Key position:", { x: keyCenterX, y: keyCenterY });
-                console.log("Lock position:", { x: lockCenterX, y: lockCenterY });
-                
-                // If key is close enough to lock (within 50 pixels)
-                if (distance < 50 && !isUnlocked) {
-                    console.log('Key is close to lock! Unlocking...');
-                    setIsUnlocked(true);
-                    setIsDragging(false); // Stop dragging
-                    // onUnlock will be called from useEffect
-                }
-            }
+            checkUnlock(e.clientX, e.clientY);
         };
 
         const handleMouseUp = () => {
             setIsDragging(false);
-            
-            // If not unlocked and not close to lock, snap back to original position
-            if (!isUnlocked) {
-                setKeyPosition({ x: 0, y: 0 });
-            }
-            
+            if (!isUnlocked) setKeyPosition({ x: 0, y: 0 });
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         };
@@ -100,17 +66,49 @@ function KeyLockContainer({ onUnlock }) {
         document.addEventListener('mouseup', handleMouseUp);
     };
 
-    // Reset function (useful for testing or restarting the interaction)
-    const resetKeyLock = () => {
-        // Clear any pending timeout
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-            timeoutRef.current = null;
+    // Touch events
+    const handleTouchStart = (e) => {
+        if (isUnlocked) return;
+        setIsDragging(true);
+        const touch = e.touches[0];
+        const rect = keyRef.current.getBoundingClientRect();
+        const offsetX = touch.clientX - rect.left - rect.width / 2;
+        const offsetY = touch.clientY - rect.top - rect.height / 2;
+
+        const handleTouchMove = (e) => {
+            const touch = e.touches[0];
+            const newX = touch.clientX - offsetX;
+            const newY = touch.clientY - offsetY;
+            setKeyPosition({ x: newX, y: newY });
+            checkUnlock(touch.clientX, touch.clientY);
+        };
+
+        const handleTouchEnd = () => {
+            setIsDragging(false);
+            if (!isUnlocked) setKeyPosition({ x: 0, y: 0 });
+            document.removeEventListener('touchmove', handleTouchMove);
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', handleTouchEnd);
+    };
+
+    // Shared unlock check
+    const checkUnlock = (clientX, clientY) => {
+        if (lockRef.current) {
+            const lockRect = lockRef.current.getBoundingClientRect();
+            const lockCenterX = lockRect.left + lockRect.width / 2;
+            const lockCenterY = lockRect.top + lockRect.height / 2;
+            const distance = Math.sqrt(
+                Math.pow(clientX - lockCenterX, 2) +
+                Math.pow(clientY - lockCenterY, 2)
+            );
+            if (distance < 50 && !isUnlocked) {
+                setIsUnlocked(true);
+                setIsDragging(false);
+            }
         }
-        
-        setIsDragging(false);
-        setKeyPosition({ x: 0, y: 0 });
-        setIsUnlocked(false);
     };
 
     return (
@@ -124,7 +122,7 @@ function KeyLockContainer({ onUnlock }) {
             lockImageSrc={lockImageSrc}
             lockAltText={lockAltText}
             onMouseDown={handleMouseDown}
-            onReset={resetKeyLock}
+            onTouchStart={handleTouchStart}
         />
     );
 }
