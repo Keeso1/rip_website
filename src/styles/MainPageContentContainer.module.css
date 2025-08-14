@@ -1,0 +1,134 @@
+.contentContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+/* SECTION NAVIGATION */
+.sectionNav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.navButton {
+    font-family: 'Ghostreverie', serif;
+    background: transparent;
+    border: 2px solid rgba(100, 108, 255, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.navButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 108, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.navButton:hover::before,
+.navButton.active::before {
+    left: 100%;
+}
+
+.navButton:hover,
+.navButton.active {
+    border-color: #646cff;
+    color: white;
+    background: rgba(100, 108, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+}
+
+.navButton.active {
+    border-color: #61dafb;
+    background: rgba(97, 218, 251, 0.1);
+    box-shadow: 0 4px 15px rgba(97, 218, 251, 0.3);
+}
+
+.navButton:active {
+    transform: translateY(0);
+}
+
+/* SECTION CONTENT */
+.sectionContent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .contentContainer {
+        padding: 1rem;
+    }
+    
+    .sectionNav {
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .navButton {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .sectionContent {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sectionNav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .navButton {
+        width: 200px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,58 @@
+/* Music Section Styles */
+.musicSection {
+    text-align: center;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.sectionTitle {
+    font-family: 'Ghostreverie', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 0 0 2rem 0;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.musicContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            0 0 10px rgba(100, 108, 255, 0.5),
+            0 0 20px rgba(100, 108, 255, 0.3);
+    }
+    to {
+        text-shadow: 
+            0 0 15px rgba(100, 108, 255, 0.8),
+            0 0 25px rgba(100, 108, 255, 0.5);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .musicSection {
+        padding: 1rem;
+    }
+    
+    .musicContent {
+        min-height: 150px;
+    }
+}

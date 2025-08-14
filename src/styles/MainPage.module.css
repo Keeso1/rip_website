@@ -1,0 +1,242 @@
+.mainContainer {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    color: white;
+    overflow-x: hidden;
+}
+
+.backgroundOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('../assets/grungetexture.png'),
+        radial-gradient(circle at 20% 30%, rgba(100, 108, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(97, 218, 251, 0.1) 0%, transparent 50%);
+    background-size: cover, 100% 100%, 100% 100%;
+    background-repeat: repeat, no-repeat, no-repeat;
+    background-blend-mode: multiply, normal, normal;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pageWrapper {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.backgroundOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('../assets/grungetexture.png'),
+        radial-gradient(circle at 20% 30%, rgba(100, 108, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(97, 218, 251, 0.1) 0%, transparent 50%);
+    background-size: cover, 100% 100%, 100% 100%;
+    background-repeat: repeat, no-repeat, no-repeat;
+    background-blend-mode: multiply, normal, normal;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+/* HEADER STYLES */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+.bandName {
+    font-family: 'TrashBrutus', sans-serif;
+    font-size: clamp(2rem, 6vw, 30rem);
+    font-weight: bold;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.1em;
+    text-shadow: 
+        0 0 10px rgba(100, 108, 255, 0.5),
+        0 0 20px rgba(100, 108, 255, 0.3),
+        0 0 30px rgba(100, 108, 255, 0.2);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+/* MAIN SECTION */
+.mainSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.musicSection {
+    width: 100%;
+    text-align: center;
+    animation: fadeInUp 1s ease-out 1s both;
+    background: 
+        url('../assets/grungetexture.png'),
+        radial-gradient(circle at 20% 30%, var(--accent-color) 0%, transparent 70%),
+        radial-gradient(circle at 80% 70%, var(--accent-color) 0%, transparent 50%);
+}
+
+.sectionTitle {
+    font-family: 'Ghostreverie', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    margin: 0 0 2rem 0;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* NAVIGATION */
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    animation: fadeInUp 1s ease-out 1.5s both;
+}
+
+.navButton {
+    font-family: 'Ghostreverie', serif;
+    background: transparent;
+    border: 2px solid rgba(100, 108, 255, 0.5);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.navButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 108, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.navButton:hover::before {
+    left: 100%;
+}
+
+.navButton:hover {
+    border-color: #646cff;
+    color: white;
+    background: rgba(100, 108, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+}
+
+.navButton:active {
+    transform: translateY(0);
+}
+
+/* ANIMATIONS */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            0 0 10px rgba(100, 108, 255, 0.5),
+            0 0 20px rgba(100, 108, 255, 0.3),
+            0 0 30px rgba(100, 108, 255, 0.2);
+    }
+    to {
+        text-shadow: 
+            0 0 15px rgba(100, 108, 255, 0.8),
+            0 0 25px rgba(100, 108, 255, 0.5),
+            0 0 35px rgba(100, 108, 255, 0.3);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .content {
+        padding: 1rem;
+    }
+    
+    .navigation {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .navButton {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .mainSection {
+        padding: 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .navButton {
+        width: 200px;
+        text-align: center;
+    }
+}

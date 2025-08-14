@@ -1,0 +1,128 @@
+.landingContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: 
+        linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.landingContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('../assets/grungetexture.png'),
+        radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+    background-size: cover, 100% 100%;
+    background-repeat: repeat, no-repeat;
+    background-blend-mode: multiply, normal;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+.bandName {
+    font-family: 'TrashBrutus', sans-serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.1em;
+    text-shadow: 
+        0 0 10px rgba(100, 108, 255, 0.5),
+        0 0 20px rgba(100, 108, 255, 0.3),
+        0 0 30px rgba(100, 108, 255, 0.2);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-family: 'Ghostreverie', serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin: 0 0 3rem 0;
+    opacity: 0.8;
+    letter-spacing: 0.05em;
+}
+
+.enterButton {
+    font-family: 'Ghostreverie', serif;
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 2px solid #646cff;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.enterButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 108, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.enterButton:hover::before {
+    left: 100%;
+}
+
+.enterButton:hover {
+    background: rgba(100, 108, 255, 0.1);
+    border-color: #61dafb;
+    box-shadow: 
+        0 0 20px rgba(100, 108, 255, 0.5),
+        inset 0 0 20px rgba(100, 108, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.enterButton:active {
+    transform: translateY(0);
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            0 0 10px rgba(100, 108, 255, 0.5),
+            0 0 20px rgba(100, 108, 255, 0.3),
+            0 0 30px rgba(100, 108, 255, 0.2);
+    }
+    to {
+        text-shadow: 
+            0 0 15px rgba(100, 108, 255, 0.8),
+            0 0 25px rgba(100, 108, 255, 0.5),
+            0 0 35px rgba(100, 108, 255, 0.3);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content {
+        padding: 1rem;
+    }
+    
+    .enterButton {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+}

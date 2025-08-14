@@ -1,0 +1,145 @@
+.keyLockContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+    position: relative;
+    min-height: 300px;
+}
+
+.lockKeyRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    position: relative;
+}
+
+/* LOCK STYLES */
+.lock {
+    position: relative;
+    transition: all 0.5s ease;
+    cursor: default;
+}
+
+.lockImage {
+    width: 100px;
+    height: auto;
+    display: block;
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.lock.unlocked .lockImage {
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)) 
+            drop-shadow(0 0 15px rgba(100, 108, 255, 0.6));
+}
+
+/* KEY STYLES */
+.key {
+    cursor: grab;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    user-select: none;
+}
+
+.key.dragging {
+    cursor: grabbing;
+    transform: scale(1.1) !important;
+    z-index: 20;
+    transition: none;
+}
+
+.key.inserted {
+    pointer-events: none;
+    animation: keyInsert 1s ease-in-out;
+}
+
+.keyImage {
+    width: 80px;
+    height: auto;
+    display: block;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.key:hover:not(.dragging):not(.inserted) .keyImage {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4)) brightness(1.1);
+}
+
+.key.dragging .keyImage {
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)) brightness(1.2);
+}
+
+.lock:hover .lockImage {
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4)) brightness(1.1);
+}
+
+/* INSTRUCTIONS */
+.instructions {
+    font-family: 'Ghostreverie', serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin: 2rem 0 0 0;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+/* ANIMATIONS */
+@keyframes keyInsert {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1.2) rotate(15deg);
+    }
+    100% {
+        transform: scale(1) rotate(20deg) translate(-2rem, 0);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .keyLockContainer {
+        gap: 1.5rem;
+        margin: 2rem 0;
+        min-height: 250px;
+    }
+    
+    .lockKeyRow {
+        gap: 2rem;
+        flex-direction: row;
+    }
+    
+    .lockImage {
+        width: 80px;
+    }
+    
+    .keyImage {
+        width: 60px;
+    }
+    
+    .instructions {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .lockKeyRow {
+        gap: 1.5rem;
+    }
+    
+    .lockImage {
+        width: 60px;
+    }
+    
+    .keyImage {
+        width: 50px;
+    }
+}
