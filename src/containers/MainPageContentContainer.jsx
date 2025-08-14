@@ -18,8 +18,8 @@ function MainPageContentContainer() {
                 return <MusicSection />;
             case 'about':
                 return <AboutSection />;
-            case 'tour':
-                return <TourSection />;
+            // case 'tour':
+            //     return <TourSection />;
             case 'contact':
                 return <ContactSection />;
             default:
@@ -43,12 +43,12 @@ function MainPageContentContainer() {
                 >
                     About
                 </button>
-                <button 
+                {/* <button 
                     className={`${styles.navButton} ${activeSection === 'tour' ? styles.active : ''}`}
                     onClick={() => handleSectionChange('tour')}
                 >
                     Tour
-                </button>
+                </button> */}
                 <button 
                     className={`${styles.navButton} ${activeSection === 'contact' ? styles.active : ''}`}
                     onClick={() => handleSectionChange('contact')}

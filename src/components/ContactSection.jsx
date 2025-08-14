@@ -14,14 +14,6 @@ function ContactSection() {
                         <strong>Booking:</strong>
                         <span>booking@rosesinpain.com</span>
                     </div>
-                    <div className={styles.contactItem}>
-                        <strong>Management:</strong>
-                        <span>management@rosesinpain.com</span>
-                    </div>
-                    <div className={styles.contactItem}>
-                        <strong>Press:</strong>
-                        <span>press@rosesinpain.com</span>
-                    </div>
                 </div>
             </div>
         </div>
