@@ -1,5 +1,9 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import KeyLock from '../components/KeyLock';
+import rustyKey from '../assets/rustykey.png';
+import closedLock from '../assets/closedlock.png';
+import openLock from '../assets/openlock.png';
 
 function KeyLockContainer({ onUnlock }) {
     const [isDragging, setIsDragging] = useState(false);
@@ -9,9 +13,9 @@ function KeyLockContainer({ onUnlock }) {
     const lockRef = useRef(null);
     const timeoutRef = useRef(null); // Add ref to store timeout ID
 
-    // Image sources managed by container
-    const keyImageSrc = '/src/assets/rustykey.png';
-    const lockImageSrc = isUnlocked ? '/src/assets/openlock.png' : '/src/assets/closedlock.png';
+    // Image sources managed by container (using Vite imports)
+    const keyImageSrc = rustyKey;
+    const lockImageSrc = isUnlocked ? openLock : closedLock;
     const lockAltText = isUnlocked ? 'Open Lock' : 'Closed Lock';
 
     useEffect(() => {

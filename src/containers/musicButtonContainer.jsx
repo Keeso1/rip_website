@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import MusicButton from '../components/musicButton';
+import punkeyeClosed from '../assets/punkeye_closed.png';
+import punkeyeHalfOpen from '../assets/punkeye_halfopen.png';
+import punkeyeFullyOpen from '../assets/punkeye_fullyopen.png';
 
 function MusicButtonContainer(){
     const images = [
-        '/src/assets/punkeye_closed.png',
-        '/src/assets/punkeye_halfopen.png', 
-        '/src/assets/punkeye_fullyopen.png'
+        punkeyeClosed,
+        punkeyeHalfOpen, 
+        punkeyeFullyOpen
     ];
     const musicSrc = '/src/assets/deaftonesprototype.mp3';
     const animationDuration = 500;
