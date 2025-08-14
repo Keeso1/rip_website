@@ -3,6 +3,7 @@ import MusicButton from '../components/musicButton';
 import punkeyeClosed from '../assets/punkeye_closed.png';
 import punkeyeHalfOpen from '../assets/punkeye_halfopen.png';
 import punkeyeFullyOpen from '../assets/punkeye_fullyopen.png';
+import musicSrc from '../assets/deaftonesprototype.mp3';
 
 function MusicButtonContainer(){
     const images = [
@@ -10,7 +11,7 @@ function MusicButtonContainer(){
         punkeyeHalfOpen, 
         punkeyeFullyOpen
     ];
-    const musicSrc = '/src/assets/deaftonesprototype.mp3';
+    
     const animationDuration = 500;
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
